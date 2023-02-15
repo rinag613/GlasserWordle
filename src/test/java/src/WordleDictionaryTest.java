@@ -26,8 +26,8 @@ class WordleDictionaryTest {
         //given
         WordleDictionary diction = new WordleDictionary("C:\\Users\\User\\Downloads\\dictionary.txt");
         //when
-        String definition = diction.getDefinition("FOG");
+        String definition = diction.getDefinition("formatting");
         //then
-        assertEquals(" to cover with fog (condensed water vapor near the earth's surface) [v FOGGED, FOGGING, FOGS]",definition);
+        assertEquals("<format=v> [v]",definition);
     }
 }

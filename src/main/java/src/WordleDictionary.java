@@ -25,7 +25,7 @@ public class WordleDictionary {
                 i++;
             }
             words.add(line.substring(0, idx));
-            definitions.add(line.substring(idx));
+            definitions.add(line.substring(idx+1));
             if(dictionary.hasNext()==false){
                 break;
             }
@@ -39,7 +39,7 @@ public class WordleDictionary {
     public String getDefinition(String word) {
         String definition = "";
 
-        int idx = words.indexOf(word);
+        int idx = words.indexOf(word.toUpperCase());
         if (idx == -1) {
             return ("Word can not be found in dictionary");
         } else {
