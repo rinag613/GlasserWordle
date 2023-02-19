@@ -28,6 +28,6 @@ class WordleDictionaryTest {
         //when
         String definition = diction.getDefinition("formatting");
         //then
-        assertEquals("<format=v> [v]",definition);
+        assertEquals("<format=v> [v]", definition);
     }
 }
