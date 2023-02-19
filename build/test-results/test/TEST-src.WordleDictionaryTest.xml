@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="src.WordleDictionaryTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2023-02-16T01:21:49" hostname="DESKTOP-N2RKCE7" time="7.487">
+  <properties/>
+  <testcase name="getList()" classname="src.WordleDictionaryTest" time="7.487">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

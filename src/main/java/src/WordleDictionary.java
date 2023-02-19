@@ -14,22 +14,17 @@ public class WordleDictionary {
         definitions = new ArrayList<>();
         Scanner dictionary = new Scanner(file);
         String line = dictionary.nextLine();
-        while (true) {
-            int i = 0;
-            int idx = 0;
-            while (i < line.length()) {
-                if (line.substring(i, i + 1).equals(" ")) {
-                    idx = i;
-                    break;
-                }
-                i++;
+        while(true) {
+            String[] word = line.split("", 2);
+            words.add(word[0]);
+            if(word.length==2) {
+                definitions.add(word[1]);
+            }else{
+                definitions.add(null);
             }
-            words.add(line.substring(0, idx));
-            definitions.add(line.substring(idx+1));
-            if(dictionary.hasNext()==false){
+            if(dictionary.hasNextLine()==false){
                 break;
             }
-            line = dictionary.nextLine();
         }
     }
 
@@ -41,7 +36,7 @@ public class WordleDictionary {
 
         int idx = words.indexOf(word.toUpperCase());
         if (idx == -1) {
-            return ("Word can not be found in dictionary");
+            return null;
         } else {
             return definitions.get(idx);
         }
