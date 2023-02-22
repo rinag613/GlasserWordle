@@ -12,7 +12,7 @@ class WordleDictionaryTest {
     @Test
     void getList() throws FileNotFoundException {
         //given
-        WordleDictionary diction = new WordleDictionary("C:\\Users\\User\\Downloads\\dictionary.txt");
+        WordleDictionary diction = new WordleDictionary("src/main/resources/dictionary.txt");
         //when
         ArrayList<String> dictionary = diction.getList();
         //then
@@ -24,7 +24,7 @@ class WordleDictionaryTest {
     @Test
     void getDefinition() throws FileNotFoundException {
         //given
-        WordleDictionary diction = new WordleDictionary("C:\\Users\\User\\Downloads\\dictionary.txt");
+        WordleDictionary diction = new WordleDictionary("src/main/resources/dictionary.txt");
         //when
         String definition = diction.getDefinition("formatting");
         //then

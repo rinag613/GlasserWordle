@@ -14,7 +14,7 @@ public class WordleDictionary {
         definitions = new ArrayList<>();
         Scanner dictionary = new Scanner(file);
         String line = dictionary.nextLine();
-        while(true) {
+        while(dictionary.hasNext()) {
             String[] word = line.split("", 2);
             words.add(word[0]);
             if(word.length==2) {
@@ -22,9 +22,7 @@ public class WordleDictionary {
             }else{
                 definitions.add(null);
             }
-            if(dictionary.hasNextLine()==false){
-                break;
-            }
+
         }
     }
 

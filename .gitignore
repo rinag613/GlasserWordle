@@ -1,5 +1,5 @@
-#.idea/
-#out/
-#.gradle/
-#build/
-#.DS_STORE
+.idea/
+out/
+.gradle/
+build/
+.DS_STORE
