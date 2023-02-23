@@ -12,11 +12,11 @@ public class Main {
 //            System.out.println(dic.get(i));
 //        }
 
-        WordleGame game = new WordleGame();
-        //when
-        CharResult[] result = game.guess("FOGYJ");
-        for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
-        }
+//        WordleGame game = new WordleGame();
+//        //when
+//        CharResult[] result = game.guess("FOGYJ");
+//        for (int i = 0; i < result.length; i++) {
+//            System.out.println(result[i]);
+//        }
     }
 }

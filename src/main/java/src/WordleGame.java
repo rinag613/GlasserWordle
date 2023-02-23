@@ -6,21 +6,20 @@ import java.util.Random;
 
 public class WordleGame {
     String word;
-    public WordleGame() throws FileNotFoundException {
-//        WordleDictionary dic = new WordleDictionary("C:\\Users\\User\\Downloads\\dictionary.txt");
-//        ArrayList<String> dictionary = dic.getList();
-//        ArrayList<String> wordleWords = new ArrayList<>();
-//        for(int i=0;i<dictionary.size();i++){
-//            if(dictionary.get(i).length()==5){
-//                wordleWords.add(dictionary.get(i));
-//            }
-//        }
-//        Random random = new Random();
-//
-//        int ran = random.nextInt(dictionary.size());
-//        word = dictionary.get(ran);
-        word = "FOGGY";
+
+    public WordleGame(WordleDictionary dic) throws FileNotFoundException {
+        ArrayList<String> wordleWords = new ArrayList<>();
+        for (String word : dic.getList()) {
+            if (word.length() == 5) {
+                wordleWords.add(word);
+            }
+        }
+
+        Random random = new Random();
+        int ran = random.nextInt(wordleWords.size());
+        word = wordleWords.get(ran);
     }
+
     public CharResult[] guess(String guessString) {
         CharResult[] results = new CharResult[]{
                 CharResult.NotFound,
@@ -29,12 +28,12 @@ public class WordleGame {
                 CharResult.NotFound,
                 CharResult.NotFound,
         };
-        for(int i=0;i<guessString.length();i++){
-            if(guessString.substring(i,i+1).equals(word.substring(i,i+1))) {
+        for (int i = 0; i < guessString.length(); i++) {
+            if (guessString.substring(i, i + 1).equals(word.substring(i, i + 1))) {
                 results[i] = CharResult.Correct;
-            }else if(word.indexOf(guessString.substring(i,i+1))!=-1){
+            } else if (word.indexOf(guessString.substring(i, i + 1)) != -1) {
                 results[i] = CharResult.WrongPlace;
-            }else{
+            } else {
                 results[i] = CharResult.NotFound;
             }
         }
