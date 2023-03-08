@@ -23,7 +23,6 @@ public class WordleDictionary {
             } else {
                 words.add(" ");
             }
-
         }
     }
 
@@ -32,8 +31,6 @@ public class WordleDictionary {
     }
 
     public String getDefinition(String word) {
-        String definition = "";
-
         int idx = words.indexOf(word.toUpperCase());
         if (idx == -1) {
             return null;
