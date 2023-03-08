@@ -9,13 +9,13 @@ public class WordleGameFrame extends JFrame {
 
     int numGuesses = 0;
     int keysTyped = 0;
-    private WordleController controler;
+    private WordleController controller;
     private JButton[] keyboard = new JButton[26];
     private JLabel[][] blanks = {{new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}, {new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}, {new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}, {new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}, {new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}, {new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-"), new JLabel("-")}};
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary wordleDictionary) {
 
-        controler = new WordleController(wordleGame, wordleDictionary, keyboard);
+        controller = new WordleController(wordleGame, wordleDictionary, keyboard);
 
         JFrame frameObj = new JFrame();
         frameObj.setLayout(new GridLayout(6, 5));
@@ -44,17 +44,17 @@ public class WordleGameFrame extends JFrame {
                 keysTyped += 1;
                 char character = e.getKeyChar();
                 if (Character.isAlphabetic(character)) {
-                    controler.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
+                    controller.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
                 } else if (String.valueOf(e.getKeyChar()).equals("\b")) {
-                    controler.backspace();
+                    controller.backspace();
                     keysTyped -= 2;
                     (blanks[numGuesses][keysTyped]).setText("");
                 } else if (String.valueOf(e.getKeyChar()).equals("\n")) {
-                    CharResult[] grade = controler.enterGuess();
+                    CharResult[] grade = controller.enterGuess();
                     numGuesses += 1;
                     turnColors(grade);
                     keysTyped = 0;
-                    controler.resetWord();
+                    controller.resetWord();
                 }
             }
         });
@@ -64,7 +64,6 @@ public class WordleGameFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-
 
     private void turnColors(CharResult[] grade) {
         for (int i = 0; i < grade.length; i++) {
