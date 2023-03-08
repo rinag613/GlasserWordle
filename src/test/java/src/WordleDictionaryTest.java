@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordleDictionaryTest {
 
     @Test
     void getList() throws FileNotFoundException {
         //given
-        WordleDictionary diction = new WordleDictionary("src/main/resources/dictionary.txt");
+        WordleDictionary diction = new WordleDictionary();
         //when
         ArrayList<String> dictionary = diction.getList();
         //then
@@ -24,7 +24,7 @@ class WordleDictionaryTest {
     @Test
     void getDefinition() throws FileNotFoundException {
         //given
-        WordleDictionary diction = new WordleDictionary("src/main/resources/dictionary.txt");
+        WordleDictionary diction = new WordleDictionary();
         //when
         String definition = diction.getDefinition("formatting");
         //then

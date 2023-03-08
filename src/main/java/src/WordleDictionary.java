@@ -2,25 +2,26 @@ package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WordleDictionary {
     public ArrayList<String> words;
     public ArrayList<String> definitions;
 
-    public WordleDictionary(String pathname) throws FileNotFoundException {
-        File file = new File(pathname);
+    public WordleDictionary() throws FileNotFoundException {
+        File file = new File("src/main/java/src/dictionary.txt");
         words = new ArrayList<>();
         definitions = new ArrayList<>();
         Scanner dictionary = new Scanner(file);
         String line = dictionary.nextLine();
-        while(dictionary.hasNext()) {
-            String[] word = line.split("", 2);
-            words.add(word[0]);
-            if(word.length==2) {
-                definitions.add(word[1]);
-            }else{
-                definitions.add(null);
+        while (dictionary.hasNext()) {
+            String[] currLine = dictionary.nextLine().split(" ", 2);
+            words.add(currLine[0]);
+            if (currLine.length > 1) {
+                words.add(currLine[1]);
+            } else {
+                words.add(" ");
             }
 
         }
@@ -29,6 +30,7 @@ public class WordleDictionary {
     public ArrayList<String> getList() {
         return this.words;
     }
+
     public String getDefinition(String word) {
         String definition = "";
 
