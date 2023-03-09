@@ -58,7 +58,7 @@ public class WordleGameFrame extends JFrame {
                 } else if (String.valueOf(e.getKeyChar()).equals("\b")) {
                     controller.backspace();
                     keysTyped -= 2;
-                    (blanks[numGuesses][keysTyped]).setText("");
+                    (blanks[numGuesses][keysTyped]).setText("-");
                 } else if (String.valueOf(e.getKeyChar()).equals("\n")) {
                     if (wordleDictionary.getDefinition(controller.getWordGuessed()) != null) {
                         CharResult[] grade = controller.enterGuess();
@@ -67,8 +67,14 @@ public class WordleGameFrame extends JFrame {
                         keysTyped = 0;
                         controller.resetWord();
 
+                    } else {
+                        clearBoard();
+                        controller.resetWord();
                     }
+                    if (numGuesses == 6) {
+                        System.exit(0);
 
+                    }
                 }
             }
         });
@@ -93,5 +99,12 @@ public class WordleGameFrame extends JFrame {
             }
         }
 
+    }
+
+    private void clearBoard() {
+        for (int i = 0; i < 5; i++) {
+            blanks[numGuesses][i].setText("-");
+        }
+        keysTyped = 0;
     }
 }
