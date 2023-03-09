@@ -2,26 +2,26 @@ package src;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordleDictionaryTest {
 
     @Test
-    void getList() throws FileNotFoundException {
+    void getList() throws IOException {
         //given
         WordleDictionary diction = new WordleDictionary();
         //when
-        ArrayList<String> dictionary = diction.getList();
+        Set<String> dictionary = diction.getList();
         //then
         assertEquals(167964, dictionary.size());
 
     }
 
     @Test
-    void getDefinition() throws FileNotFoundException {
+    void getDefinition() throws IOException {
         //given
         WordleDictionary diction = new WordleDictionary();
         //when

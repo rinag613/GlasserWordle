@@ -5,14 +5,12 @@ import javax.swing.*;
 public class WordleController {
     private WordleGame wordleGame;
     private WordleDictionary wordleDictionary;
-    //  private JLabel[][] labels;
     private JButton[] keyboard;
     private String wordGuessed = "";
 
     public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary, JButton[] keyboard) {
         this.wordleGame = wordleGame;
         this.wordleDictionary = wordleDictionary;
-        // this.labels = labels;
         this.keyboard = keyboard;
     }
 
@@ -30,10 +28,15 @@ public class WordleController {
 
         CharResult[] answer = wordleGame.guess(wordGuessed);
         return answer;
+
     }
 
     public void backspace() {
         wordGuessed = wordGuessed.substring(0, wordGuessed.length() - 1);
+    }
+
+    public String getWordGuessed() {
+        return wordGuessed;
     }
 
     public void resetWord() {

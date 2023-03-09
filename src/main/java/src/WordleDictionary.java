@@ -1,41 +1,42 @@
 package src;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 
 public class WordleDictionary {
-    public ArrayList<String> words;
-    public ArrayList<String> definitions;
+    private File file;
+    private HashMap<String, String> dictionary;
 
-    public WordleDictionary() throws FileNotFoundException {
-        File file = new File("src/main/java/src/dictionary.txt");
-        words = new ArrayList<>();
-        definitions = new ArrayList<>();
-        Scanner dictionary = new Scanner(file);
-        String line = dictionary.nextLine();
-        while (dictionary.hasNext()) {
-            String[] currLine = dictionary.nextLine().split(" ", 2);
-            words.add(currLine[0]);
-            if (currLine.length > 1) {
-                words.add(currLine[1]);
+    public WordleDictionary() throws IOException {
+        this.file = new File("src/main/java/src/dictionary.txt");
+        dictionary = new HashMap<>();
+        loadingDictionary();
+    }
+
+    private void loadingDictionary() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] currLine = line.split(" ", 2);
+            if (currLine.length == 2) {
+                dictionary.put(currLine[0], currLine[1]);
             } else {
-                words.add(" ");
+                dictionary.put(currLine[0], "");
             }
         }
     }
 
-    public ArrayList<String> getList() {
-        return this.words;
+    public String getDefinition(String word) {
+        String definition = dictionary.get(word.toUpperCase());
+        return definition;
     }
 
-    public String getDefinition(String word) {
-        int idx = words.indexOf(word.toUpperCase());
-        if (idx == -1) {
-            return null;
-        } else {
-            return definitions.get(idx);
-        }
+    public Set<String> getList() {
+        Set<String> words = this.dictionary.keySet();
+        return words;
     }
 }

@@ -2,14 +2,14 @@ package src;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 class WordleGameTest {
 
     @Test
-    void guess() throws FileNotFoundException {
+    void guess() throws IOException {
         //given
-        WordleGame game = new WordleGame();
+        WordleGame game = new WordleGame(new WordleDictionary());
         //when
         CharResult[] result = game.guess("FOGGY");
         //then
