@@ -19,7 +19,7 @@ public class WordleGameFrame extends JFrame {
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary wordleDictionary) {
 
-        controller = new WordleController(wordleGame, wordleDictionary, keyboard1);
+        controller = new WordleController(wordleGame, wordleDictionary, blanks, keyboard1);
         JFrame keyboardFrame = new JFrame();
         keyboardFrame.setLayout(new BorderLayout());
         for (int i = 0; i < keyboard1.length; i++) {
@@ -40,6 +40,14 @@ public class WordleGameFrame extends JFrame {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                char character = e.getKeyChar();
+                if (Character.isAlphabetic(character)) {
+                    controller.addLetter(String.valueOf(character).toUpperCase());
+                } else if (String.valueOf(character).equals("\b")) {
+                    controller.backspace();
+                } else if (String.valueOf(character).equals("\n")) {
+                    controller.enterGuess();
+                }
             }
 
             @Override
@@ -48,35 +56,36 @@ public class WordleGameFrame extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if (numGuesses < 6 && keysTyped < 5 && !String.valueOf(e.getKeyChar()).equals("\b") && !String.valueOf(e.getKeyChar()).equals("\n")) {
-                    (blanks[numGuesses][keysTyped]).setText(String.valueOf(e.getKeyChar()).toUpperCase());
-                }
-                keysTyped += 1;
-                char character = e.getKeyChar();
-                if (Character.isAlphabetic(character)) {
-                    controller.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
-                } else if (String.valueOf(e.getKeyChar()).equals("\b")) {
-                    controller.backspace();
-                    keysTyped -= 2;
-                    (blanks[numGuesses][keysTyped]).setText("-");
-                } else if (String.valueOf(e.getKeyChar()).equals("\n")) {
-                    if (wordleDictionary.getDefinition(controller.getWordGuessed()) != null) {
-                        CharResult[] grade = controller.enterGuess();
-                        numGuesses += 1;
-                        turnColors(grade);
-                        keysTyped = 0;
-                        controller.resetWord();
-
-                    } else {
-                        clearBoard();
-                        controller.resetWord();
-                    }
-                    if (numGuesses == 6) {
-                        System.exit(0);
-
-                    }
-                }
             }
+//                if (numGuesses < 6 && keysTyped < 5 && !String.valueOf(e.getKeyChar()).equals("\b") && !String.valueOf(e.getKeyChar()).equals("\n")) {
+//                    (blanks[numGuesses][keysTyped]).setText(String.valueOf(e.getKeyChar()).toUpperCase());
+//                }
+//                keysTyped += 1;
+//                char character = e.getKeyChar();
+//                if (Character.isAlphabetic(character)) {
+//                    controller.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
+//                } else if (String.valueOf(e.getKeyChar()).equals("\b")) {
+//                    controller.backspace();
+//                    keysTyped -= 2;
+//                    (blanks[numGuesses][keysTyped]).setText("-");
+//                } else if (String.valueOf(e.getKeyChar()).equals("\n")) {
+//                    if (wordleDictionary.getDefinition(controller.getWordGuessed()) != null) {
+//                        CharResult[] grade = controller.enterGuess();
+//                        numGuesses += 1;
+//                        turnColors(grade);
+//                        keysTyped = 0;
+//                        controller.resetWord();
+//
+//                    } else {
+//                        clearBoard();
+//                        controller.resetWord();
+//                    }
+//                    if (numGuesses == 6) {
+//                        System.exit(0);
+//
+//                    }
+//                }
+//            }
         });
         frameObj.setVisible(true);
         frameObj.setSize(300, 300);
