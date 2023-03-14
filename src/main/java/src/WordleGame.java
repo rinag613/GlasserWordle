@@ -19,6 +19,11 @@ public class WordleGame {
 
         int picked = random.nextInt(chooseFrom.size());
         chosenWord = chooseFrom.get(picked);
+        System.out.println(chosenWord);
+    }
+
+    public String getChosenWord() {
+        return chosenWord;
     }
 
     public CharResult[] guess(String guessString) {

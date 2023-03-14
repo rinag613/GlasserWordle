@@ -10,6 +10,5 @@ public class Main {
         WordleGame game = new WordleGame(dictionary);
 
         WordleGameFrame frame = new WordleGameFrame(game, dictionary);
-        frame.setVisible(true);
     }
 }

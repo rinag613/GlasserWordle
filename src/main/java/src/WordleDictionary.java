@@ -19,13 +19,14 @@ public class WordleDictionary {
 
     private void loadingDictionary() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
+
         String line;
         while ((line = br.readLine()) != null) {
             String[] currLine = line.split(" ", 2);
             if (currLine.length == 2) {
                 dictionary.put(currLine[0], currLine[1]);
             } else {
-                dictionary.put(currLine[0], "");
+                dictionary.put(currLine[0].toUpperCase(), "");
             }
         }
     }
