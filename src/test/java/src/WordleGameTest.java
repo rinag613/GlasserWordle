@@ -17,7 +17,7 @@ class WordleGameTest {
                 CharResult.Correct,
                 CharResult.Correct,
                 CharResult.Correct,
-                CharResult.Correct,};
+                CharResult.Correct};
 
         assertEquals(expected);
     }
