@@ -19,7 +19,9 @@ public class WordleController {
     private String wordGuessed = "";
 
 
-    public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary, JFrame mainFrame, JLabel[][] blanks, JButton[] keyboard1, JButton[] keyboard2, JButton[] keyboard3) {
+    public WordleController(WordleGame wordleGame, WordleDictionary wordleDictionary,
+                            JFrame mainFrame, JLabel[][] blanks,
+                            JButton[] keyboard1, JButton[] keyboard2, JButton[] keyboard3) {
         this.wordleGame = wordleGame;
         this.wordleDictionary = wordleDictionary;
         this.keyboard1 = keyboard1;
@@ -29,11 +31,6 @@ public class WordleController {
         this.blanks = blanks;
     }
 
-    /**
-     * Called when you type the letter in or press a letter on the onscreen keyboard
-     *
-     * @param letter
-     */
     public void addLetter(String letter, int index, int keyboardNum) {
         wordGuessed = wordGuessed + letter;
         (blanks[numGuesses][keysTyped]).setText(letter);
@@ -50,11 +47,13 @@ public class WordleController {
             keysTyped = 0;
             resetWord();
             if (numGuesses == 6) {
-                JOptionPane.showMessageDialog(mainFrame, wordleGame.getChosenWord(), "Correct Word", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, wordleGame.getChosenWord(),
+                        "Correct Word", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
             if (numCorrect == 5) {
-                JOptionPane.showMessageDialog(mainFrame, "You Win!", "Success", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(mainFrame, "You Win!",
+                        "Success", JOptionPane.PLAIN_MESSAGE);
                 System.exit(0);
             }
         } else {

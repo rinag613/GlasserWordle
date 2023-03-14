@@ -25,20 +25,22 @@ public class WordleGameFrame extends JFrame {
     private ArrayList<String> alpha3 = new ArrayList<String>(
             Arrays.asList("Z", "X", "C", "V", "B", "N", "M"));
 
-    private JButton[] keyboard1 = {new JButton("Q"), new JButton("W"), new JButton("E"), new JButton("R"), new JButton("T"), new JButton("Y"), new JButton("U"), new JButton("I"), new JButton("O"), new JButton("P")};
-    private JButton[] keyboard2 = {new JButton("A"), new JButton("S"), new JButton("D"), new JButton("F"), new JButton("G"), new JButton("H"), new JButton("J"), new JButton("K"), new JButton("L")};
-    private JButton[] keyboard3 = {new JButton("Z"), new JButton("X"), new JButton("C"), new JButton("V"), new JButton("B"), new JButton("N"), new JButton("M")};
-
+    private JButton[] keyboard1 = new JButton[10];
+    private JButton[] keyboard2 = new JButton[9];
+    private JButton[] keyboard3 = new JButton[7];
     private JLabel[][] blanks = new JLabel[6][5];
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary wordleDictionary) {
 
-        controller = new WordleController(wordleGame, wordleDictionary, mainFrame, blanks, keyboard1, keyboard2, keyboard3);
+        controller = new WordleController(wordleGame, wordleDictionary,
+                mainFrame, blanks,
+                keyboard1, keyboard2, keyboard3);
 
         mainFrame = new JFrame("Wordle");
         mainFrame.setLayout(new BorderLayout());
 
         JPanel keyboardFrame = new JPanel();
+        setKeyboardButtons();
         keyboardFrame.setLayout(new BorderLayout());
 
         JPanel frame = new JPanel();
@@ -76,7 +78,7 @@ public class WordleGameFrame extends JFrame {
             });
         }
         JPanel frame3 = new JPanel();
-        frame3.setLayout(new GridLayout(1, 10));
+        frame3.setLayout(new GridLayout(1, 7));
         for (int i = 0; i < keyboard3.length; i++) {
             int ii = i;
             frame3.add(keyboard3[i]);
@@ -163,5 +165,17 @@ public class WordleGameFrame extends JFrame {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
+    }
+
+    private void setKeyboardButtons() {
+        for (int i = 0; i < alpha1.size(); i++) {
+            keyboard1[i] = new JButton(alpha1.get(i));
+        }
+        for (int i = 0; i < alpha2.size(); i++) {
+            keyboard2[i] = new JButton(alpha2.get(i));
+        }
+        for (int i = 0; i < alpha3.size(); i++) {
+            keyboard3[i] = new JButton(alpha3.get(i));
+        }
     }
 }
